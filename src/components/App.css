@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Flat&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nova Flat';
+}
+
+h1.login-header {
+  font-size: 24pt;
+  font-weight: bold;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: purple;
+}
+
+.login-form {
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-form * {
+  padding: .75rem;
+}
+
+.login-form input {
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.login-form button {
+  background-color: #007d48;
+  border-radius: 5px;
+  border: 0;
+  font-weight: bold;
+  color: white;
+  width: 100%;
+}
