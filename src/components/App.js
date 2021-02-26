@@ -1,15 +1,16 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Chat from './Chat';
 import Login from './Login';
-import styled from 'styled-components';
+import Header from './Header'
 import './App.css';
 
 function App() {
   return (
-    <div className="app-container">
+    <div>
       <Router> 
        <Switch>
          <Route path='/chat'>
+          <Header/>
           <Chat/>
          </Route>
           
