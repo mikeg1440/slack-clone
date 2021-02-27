@@ -10,7 +10,7 @@ function App() {
       <Router> 
        <Switch>
          <Route path='/chat'>
-          <Header/>
+          <Header username='nick' />
           <Chat/>
          </Route>
           
