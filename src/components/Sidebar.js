@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import {IoCreateOutline} from 'react-icons/io5'
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 export default function Sidebar() {
+
+    const handleNewMessage = () => {
+        alert('working');
+    }
+
     return (
         <StyledSidebar>
             <StyledWorkspace>
                 Workspace inc.
-                <IoCreateOutline style={{color: 'white'}} />
+                <StyledNewMessage href="#" onClick={handleNewMessage}>
+                    <AddCircleOutlineIcon/>
+                </StyledNewMessage>
             </StyledWorkspace>
 
             <StyledPages>
@@ -39,9 +46,15 @@ const StyledSidebar = styled.div`
 
 const StyledWorkspace = styled.div`
     display: flex;
-    justify-content: space-between;
-    padding: 1rem .5rem;
-    width: 80%;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+    width: 100%;
+    border-bottom: 1px solid #523753;
+`
+
+const StyledNewMessage = styled.a`
+    color: white;
+    
 `
 
 const StyledPages = styled.div`
