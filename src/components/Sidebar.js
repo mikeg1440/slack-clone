@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import {sidebarItems} from '../data/SidebarData'
+import {sidebarItems, channelItems} from '../data/SidebarData';
+import AddIcon from '@material-ui/icons/Add';
 
 export default function Sidebar() {
 
     const handleNewMessage = () => {
         alert('working');
+    }
+
+    const handleAddChannel = () => {
+        alert('adding channel!');
     }
 
     return (
@@ -18,23 +23,39 @@ export default function Sidebar() {
                 </StyledNewMessage>
             </StyledWorkspace>
 
-            <StyledPages>
+            <PagesContainer>
+                <StyledPages>
 
-                {sidebarItems.map(page => 
-                    <StyledPageItem>
-                        {page.icon}
-                        {page.text}        
-                    </StyledPageItem>
+                    {sidebarItems.map(page => 
+                        <>
+                            {page.icon}
+                            {page.text}        
+                        </>
 
-                )}
+                    )}
 
-            </StyledPages>
+                </StyledPages>
+            </PagesContainer>
 
-            <StyledConversations>
-                <h4>Channels</h4>
 
-                <h4>Direct Messages</h4>
-            </StyledConversations>
+            <ChannelContainer>
+
+                <StyledChannels>
+                    <ChannelHeader>
+                        <b>Channels</b> 
+                        <AddChannel>
+                            <AddIcon onClick={handleAddChannel} fontSize='small' />
+                        </AddChannel>
+                    </ChannelHeader>
+                    {channelItems.map(channel => (
+                        <StyledChannel>
+                            # {channel.text}
+                        </StyledChannel>
+                    ))}
+
+                </StyledChannels>
+
+            </ChannelContainer>
 
         </StyledSidebar>
     )
@@ -60,25 +81,66 @@ const StyledWorkspace = styled.div`
 
 const StyledNewMessage = styled.a`
     color: white;
+    cursor: pointer;
+`
+
+const PagesContainer = styled.div`
+    border-bottom: 1px solid #523753;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 `
 
 const StyledPages = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 20% auto;
     padding: 1rem 0;
-    svg {
-        padding-right: 1rem;
-    }
-    border-bottom: solid 1px #523753;
 `
 
 const StyledPageItem = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: .25rem;
+    margin-left: 1rem;
 `
 
-const StyledConversations = styled.div`
+const ChannelContainer = styled.div`
+    width: 100%;
+    border-bottom: 1px solid #523753;
+    display: flex;
+    justify-content: center;
+`
 
+const ChannelHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    svg {
+        cursor: pointer;
+    }
+`
+
+const AddChannel = styled.div`
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    :hover {
+        background-color: white;
+        color: purple;
+    }
+`
+
+const StyledChannels = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+`
+
+const StyledChannel = styled.div`
+    margin-bottom: .25rem;
+    padding-left: .5rem;
+    
 `
