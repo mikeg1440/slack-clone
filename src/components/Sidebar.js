@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import {sidebarItems} from '../data/SidebarData'
 
 export default function Sidebar() {
 
@@ -18,10 +19,15 @@ export default function Sidebar() {
             </StyledWorkspace>
 
             <StyledPages>
-                <h4><b>All unreads</b></h4>
-                <h4>Threads</h4>
-                <h4>Mentions & reactions</h4>
-                <h4>Show more</h4>
+
+                {sidebarItems.map(page => 
+                    <StyledPageItem>
+                        {page.icon}
+                        {page.text}        
+                    </StyledPageItem>
+
+                )}
+
             </StyledPages>
 
             <StyledConversations>
@@ -54,10 +60,23 @@ const StyledWorkspace = styled.div`
 
 const StyledNewMessage = styled.a`
     color: white;
-    
 `
 
 const StyledPages = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 0;
+    svg {
+        padding-right: 1rem;
+    }
+    border-bottom: solid 1px #523753;
+`
+
+const StyledPageItem = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: .25rem;
 `
 
 const StyledConversations = styled.div`
