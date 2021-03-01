@@ -1,28 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
-import {BsArrowLeftShort} from 'react-icons/bs';
-import {BsArrowRightShort} from 'react-icons/bs';
-import {AiOutlineClockCircle} from 'react-icons/ai';
-import {BiHelpCircle} from 'react-icons/bi';
-import {VscCircleFilled} from 'react-icons/vsc';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import UpdateIcon from '@material-ui/icons/Update';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 export default function Header({ username }) {
 
     return (
         <StyledHeader>
             <div>
-                <VscCircleFilled style={{color: 'red'}} />
-                <VscCircleFilled style={{color: 'yellow'}} />
-                <VscCircleFilled style={{color: 'green'}} />
+                <FiberManualRecordIcon style={{color: 'red'}} size='small' />
+                <FiberManualRecordIcon style={{color: 'yellow'}} size='small' />
+                <FiberManualRecordIcon style={{color: 'green'}} size='small' />
             </div>
 
             <StyledSearchbar>
-                <BsArrowLeftShort />
-                <BsArrowRightShort />
-                <AiOutlineClockCircle />
+                <ArrowBackIcon />
+                <ArrowForwardIcon/>
+                <UpdateIcon/>
 
                 <StyledInput type='text' name='search' placeholder='Search' />
-                <BiHelpCircle/>
+                <HelpOutlineIcon/>
             </StyledSearchbar>
 
             <StyledUserContainer>
