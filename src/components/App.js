@@ -22,7 +22,7 @@ const darkTheme = {
   headerBG: '#1b1b16',
   sidebarFG: 'white',
   sidebarBG: '#0e0e0e',
-  chatFG: '#3d0e3e',
+  chatFG: '#0a91bb;',
   chatBG: 'black'
 }
 
