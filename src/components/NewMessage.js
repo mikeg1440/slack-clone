@@ -43,7 +43,6 @@ export default function NewMessage() {
 const NewMessageContainer = styled.div`
     display: flex;
     justify-content: center;
-    border: 1px solid #523753;
     padding: 1rem;
 `
 
@@ -66,8 +65,11 @@ const TextOptionBar = styled.div`
     border-top: 1px solid #523753;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: .5rem;
+    justify-content: space-around;
+    padding: .5rem 0;
+    svg {
+        cursor: pointer;
+    }
 `
 
 const InputContainer = styled.div`
