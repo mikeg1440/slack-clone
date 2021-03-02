@@ -5,8 +5,9 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import UpdateIcon from '@material-ui/icons/Update';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import StyleIcon from '@material-ui/icons/Style';
 
-export default function Header({ username }) {
+export default function Header({ username, themeCallback }) {
 
     return (
         <StyledHeader>
@@ -23,6 +24,7 @@ export default function Header({ username }) {
 
                 <StyledInput type='text' name='search' placeholder='Search' />
                 <HelpOutlineIcon/>
+                <StyleIcon onClick={themeCallback} />
             </StyledSearchbar>
 
             <StyledUserContainer>
@@ -39,8 +41,8 @@ const StyledHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    background-color: #2a0b2a;
-    color: white;
+    background-color: ${props => props.theme.headerBG};
+    color: ${props => props.theme.headerFG};
     padding: .5rem .5rem;
 `
 
