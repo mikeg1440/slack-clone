@@ -62,8 +62,8 @@ export default function Sidebar() {
 }
 
 const StyledSidebar = styled.div`
-    background-color: #3d0e3e;
-    color: white;
+    background-color: ${props => props.theme.sidebarBG};
+    color: ${props => props.theme.sidebarFG};
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
