@@ -30,13 +30,16 @@ const darkTheme = {
 function App() {
 
   const [currentTheme, setCurrentTheme] = useState('light');
+  const [ rooms, setRooms ] = useState([]);
   const [ rooms, setRooms ] = useState(undefined);
 
   useEffect(() => {
     db.collection('rooms')
       .get()
       .then(snapshot => {
-        setRooms(snapshot.docs.map(doc => doc.data()))
+        setRooms(snapshot.docs.map(doc => {
+          return {id: doc.id, name: doc.data().name}
+        }))
       })
   })
 
