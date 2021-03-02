@@ -9,6 +9,7 @@ import ChatMessage from './ChatMessage';
 export default function Chatroom() {
     return (
         <ChatContainer>
+
             <ChatHeader>
                 <HeaderContainer>
                     <HeaderTitle># Chat Room</HeaderTitle>
@@ -24,8 +25,7 @@ export default function Chatroom() {
 
 
             <ChatRoom>
-                <p style={{color: 'green', float: 'left'}}>John: Hey whats up guys</p>
-                <p style={{color: 'blue', float: 'right'}}>Mark: Nothing much u</p>
+                <ChatMessage />
                 <ChatMessage />
             </ChatRoom>
 
@@ -39,14 +39,17 @@ export default function Chatroom() {
 const ChatContainer = styled.div`
     background-color: ${props => props.theme.chatBG};
     color: ${props => props.theme.chatFG};
+    display: grid;
+    grid-template-rows: 57px auto min-content;
 `
 
 const ChatHeader = styled.div`
-    border: 1px solid #523753;
+    border-bottom: 1px solid #523753;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 `
 
 const HeaderContainer = styled.div`
@@ -55,12 +58,12 @@ const HeaderContainer = styled.div`
 `
 
 const ChatDetails = styled.div`
+    display: flex;
     flex-direction: row;
-    
+    align-items: center;    
 `
 
 const HeaderTitle = styled.p`
-    font-size: 18pt;
     font-weight: bold;
 `
 
