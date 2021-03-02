@@ -4,6 +4,8 @@ import './App.css';
 import { ThemeProvider } from 'styled-components';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import db from '../firebase';
+import ChatPage from '../containers/ChatPage'
 
 
 const lightTheme = {
@@ -28,6 +30,15 @@ const darkTheme = {
 function App() {
 
   const [currentTheme, setCurrentTheme] = useState('light');
+  const [ rooms, setRooms ] = useState(undefined);
+
+  useEffect(() => {
+    db.collection('rooms')
+      .get()
+      .then(snapshot => {
+        setRooms(snapshot.docs.map(doc => doc.data()))
+      })
+  })
 
   const switchTheme = () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
