@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
 import InfoIcon from '@material-ui/icons/Info';
-import { ReorderTwoTone } from '@material-ui/icons';
 import NewMessage from './NewMessage';
 import ChatMessage from './ChatMessage';
 

@@ -97,13 +97,6 @@ const StyledPages = styled.div`
     padding: 1rem 0;
 `
 
-const StyledPageItem = styled.div`
-    display: flex;
-    align-items: center;
-    margin-bottom: .25rem;
-    margin-left: 1rem;
-`
-
 const ChannelContainer = styled.div`
     width: 100%;
     border-bottom: 1px solid #523753;
