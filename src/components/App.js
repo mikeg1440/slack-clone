@@ -5,7 +5,7 @@ import Header from './Header'
 import './App.css';
 import { ThemeProvider } from 'styled-components';
 import { useState } from 'react';
-
+import styled from 'styled-components';
 
 
 const lightTheme = {
@@ -37,7 +37,7 @@ function App() {
   }
 
   return (
-    <div>
+    <AppContainer>
       <Router> 
        <Switch>
          <Route path='/chat'>
@@ -52,8 +52,16 @@ function App() {
          </Route>
        </Switch>
       </Router>
-    </div>
+    </AppContainer>
   );
 }
 
 export default App;
+
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+`
