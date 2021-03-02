@@ -1,10 +1,8 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Chat from './Chat';
 import Login from './Login';
-import Header from './Header'
 import './App.css';
 import { ThemeProvider } from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 
@@ -42,8 +40,7 @@ function App() {
        <Switch>
          <Route path='/chat'>
             <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme} >
-              <Header username='nick' themeCallback={switchTheme} />
-              <Chat/>
+              <ChatPage rooms={rooms} themeCallback={switchTheme} />
             </ThemeProvider>
          </Route>
           
