@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import Chatroom from './Chatroom'
 import Sidebar from './Sidebar'
 
-export default function Chat() {
+export default function Chat({ rooms }) {
     return (
         <StyledChat>
-            <Sidebar/>
+            <Sidebar rooms={rooms} />
             
-            <Chatroom/>
+            <Chatroom />
         </StyledChat>
     )
 }
