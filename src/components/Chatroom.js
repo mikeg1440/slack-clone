@@ -4,7 +4,8 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
 import InfoIcon from '@material-ui/icons/Info';
 import { ReorderTwoTone } from '@material-ui/icons';
-import NewMessage from './NewMessage'
+import NewMessage from './NewMessage';
+import ChatMessage from './ChatMessage';
 
 export default function Chatroom() {
     return (
@@ -26,6 +27,7 @@ export default function Chatroom() {
             <ChatRoom>
                 <p style={{color: 'green', float: 'left'}}>John: Hey whats up guys</p>
                 <p style={{color: 'blue', float: 'right'}}>Mark: Nothing much u</p>
+                <ChatMessage />
             </ChatRoom>
 
             <NewMessage/>
@@ -64,5 +66,5 @@ const HeaderTitle = styled.p`
 `
 
 const ChatRoom = styled.div`
-    height: 75vh;
+    border-bottom: 1px solid #523753;
 `
