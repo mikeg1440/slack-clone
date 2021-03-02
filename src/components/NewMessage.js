@@ -11,13 +11,24 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import FontDownloadIcon from '@material-ui/icons/FontDownload';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
+import SendIcon from '@material-ui/icons/Send';
 
 export default function NewMessage() {
+
+    const handleMessageSend = () => {
+        alert('Sending message');
+    }
+
     return (
         <NewMessageContainer>
             <InnerMessageContainer>
+
                 <InputContainer>
-                    <MessageInput placeholder='Message #chat-room-name' type="text"/>
+                    <MessageInput placeholder='Message #chat-room-name' type="text" />
+
+                    <SendButton onClick={handleMessageSend}>
+                        <SendIcon/>
+                    </SendButton>               
                 </InputContainer>
 
                 <TextOptionBar>
@@ -35,6 +46,7 @@ export default function NewMessage() {
                 </TextOptionBar>
                 
             </InnerMessageContainer>
+
         </NewMessageContainer>
     )
 }
@@ -52,16 +64,7 @@ const InnerMessageContainer = styled.div`
     width: 70%;
 `
 
-const MessageInput = styled.input`
-    width: 100%;
-    border-radius: 5px;
-    border: 0;
-    line-height: 2;
-    padding: .25rem;
-`
-
 const TextOptionBar = styled.div`
-    width: 100%;
     border-top: 1px solid #523753;
     display: flex;
     align-items: center;
@@ -72,9 +75,33 @@ const TextOptionBar = styled.div`
     }
 `
 
-const InputContainer = styled.div`
-    padding: .25rem;
+const InputContainer = styled.form`
+    padding: .5rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: row;
+`
+
+const MessageInput = styled.input`
+    flex: 1;
+    border-radius: 5px;
+    border: none;
+    line-height: 2;
+    padding: .25rem;
+    :focus {
+        outline: none;
+    }
+`
+
+const SendButton = styled.div`
+    color: #13d47c;
+    background-color: darkgreen;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    :hover {
+        cursor: pointer;
+    }
 `
