@@ -31,7 +31,7 @@ function App() {
 
   const [currentTheme, setCurrentTheme] = useState('light');
   const [ rooms, setRooms ] = useState([]);
-  const [ rooms, setRooms ] = useState(undefined);
+  const [ user, setUser ] = useState(undefined);
 
   useEffect(() => {
     db.collection('rooms')
@@ -52,15 +52,19 @@ function App() {
     <AppContainer>
       <Router> 
        <Switch>
-         <Route path='/chat'>
-            <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme} >
-              <ChatPage rooms={rooms} themeCallback={switchTheme} />
-            </ThemeProvider>
-         </Route>
+
+        {!!user ? (
+          <Route path='/chat'>
+          <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme} >
+            <ChatPage rooms={rooms} themeCallback={switchTheme} />
+          </ThemeProvider>
+        </Route>
+        ) : (
+          <Route path='/'>
+            <Login/>
+         </Route>          
+        )}
           
-         <Route path='/'>
-          <Login/>
-         </Route>
        </Switch>
       </Router>
     </AppContainer>
@@ -74,5 +78,4 @@ const AppContainer = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 `
