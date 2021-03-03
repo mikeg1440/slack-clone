@@ -4,7 +4,6 @@ import GoogleLogin from './GoogleLogin';
 import './App.css';
 import styled, { ThemeProvider } from 'styled-components';
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import db from '../firebase';
 import ChatPage from '../containers/ChatPage'
 
@@ -67,11 +66,12 @@ function App() {
        <Switch>
 
         {!!user ? (
-          <Route path='/chat'>
-          <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme} >
-            <ChatPage rooms={rooms} themeCallback={switchTheme} />
-          </ThemeProvider>
-        </Route>
+
+          <Route path='/room/:channelId'>
+            <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme} >
+              <ChatPage rooms={rooms} signOutCallback={handleSignOut} themeCallback={switchTheme} />
+            </ThemeProvider>
+          </Route>
         ) : (
           <Route path='/'>
             <GoogleLogin setUserCallback={handleSetUser} />
