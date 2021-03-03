@@ -40,7 +40,7 @@ const ChatContainer = styled.div`
     background-color: ${props => props.theme.chatBG};
     color: ${props => props.theme.chatFG};
     display: grid;
-    grid-template-rows: 57px auto min-content;
+    grid-template-rows: 65px auto min-content;
 `
 
 const ChatHeader = styled.div`
