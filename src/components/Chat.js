@@ -1,25 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Chatroom from './Chatroom'
 import Sidebar from './Sidebar'
 
 export default function Chat({ rooms }) {
+
+    const [ currentRoom, setCurrentRoom ] = useState(undefined);
+
+    const handleSetRoom = () => {
+
+    }
+
     return (
         <StyledChat>
-            <Sidebar rooms={rooms} />
+            <Sidebar rooms={rooms} setRoomCallback={handleSetRoom} />
             
-            <Chatroom />
+            <Chatroom room={currentRoom} />
         </StyledChat>
     )
 }
 
 const StyledChat = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: white;
     display: grid;
     grid-template-columns: 0.4fr 1.6fr;
     gap: 0px 0px;
-    grid-template-areas:
-        ". .";
+    grid-template-areas: ". .";
 `
