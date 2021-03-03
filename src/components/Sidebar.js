@@ -4,8 +4,18 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import {sidebarItems} from '../data/SidebarData';
 import AddIcon from '@material-ui/icons/Add';
 import db from '../firebase';
+import { useHistory } from 'react-router-dom';
 
 export default function Sidebar({ rooms }) {
+    const history = useHistory();
+
+    const goToChannel = (id) => {
+        if(id){
+            console.info(`RoomID: ${id}`);
+            history.push(`/room/${id}`);
+        }
+        
+    }
 
     const handleNewMessage = () => {
         alert('working');
@@ -44,22 +54,20 @@ export default function Sidebar({ rooms }) {
 
 
             <ChannelContainer>
+                <ChannelHeader>
+                    <b>Channels</b> 
+                    <AddChannel>
+                        <AddIcon onClick={handleAddChannel} fontSize='small' />
+                    </AddChannel>
+                </ChannelHeader>
 
                 <StyledChannels>
-                    <ChannelHeader>
-                        <b>Channels</b> 
-                        <AddChannel>
-                            <AddIcon onClick={handleAddChannel} fontSize='small' />
-                        </AddChannel>
-                    </ChannelHeader>
                     {!!rooms && rooms.map(room => (
-                        <StyledChannel>
+                        <StyledChannel onClick={() => goToChannel(room.id)}>
                             # {room.name}
                         </StyledChannel>
                     ))}
-
                 </StyledChannels>
-
             </ChannelContainer>
 
         </StyledSidebar>
@@ -106,13 +114,14 @@ const ChannelContainer = styled.div`
     width: 100%;
     border-bottom: 1px solid #523753;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 `
 
 const ChannelHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem;
     svg {
         cursor: pointer;
     }
@@ -133,12 +142,15 @@ const StyledChannels = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
-    padding: 1rem;
+    align-items:
+    width: fit-content;
+    padding: 0 1rem;
+    :hover {
+        cursor: pointer;
+    }
 `
 
 const StyledChannel = styled.div`
     margin-bottom: .25rem;
     padding-left: .5rem;
-    
 `
