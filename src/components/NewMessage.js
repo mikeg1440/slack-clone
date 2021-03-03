@@ -59,7 +59,7 @@ const NewMessageContainer = styled.div`
 `
 
 const InnerMessageContainer = styled.div`
-    border: 1px solid black;
+    border: 1px solid #523753;
     border-radius: 5px;
     width: 70%;
 `
