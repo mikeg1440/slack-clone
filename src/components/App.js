@@ -1,7 +1,8 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Login from './Login';
+import GoogleLogin from './GoogleLogin';
 import './App.css';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import db from '../firebase';
@@ -31,7 +32,7 @@ function App() {
 
   const [currentTheme, setCurrentTheme] = useState('light');
   const [ rooms, setRooms ] = useState([]);
-  const [ user, setUser ] = useState(undefined);
+  const [ user, setUser ] = useState(JSON.stringify(localStorage.getItem('user')));
 
   useEffect(() => {
     db.collection('rooms')
@@ -41,11 +42,23 @@ function App() {
           return {id: doc.id, name: doc.data().name}
         }))
       })
-  })
+      localStorage.setItem('rooms', rooms);
+  }, [])
 
   const switchTheme = () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     setCurrentTheme(newTheme);
+  }
+
+  const handleSetUser = (newUser) => {
+    setUser(newUser);
+    localStorage.setItem('user', newUser);
+  }
+
+  const handleSignOut = () => {
+    localStorage.clear();
+    setUser(null);
+    setRooms([]);
   }
 
   return (
@@ -61,7 +74,7 @@ function App() {
         </Route>
         ) : (
           <Route path='/'>
-            <Login/>
+            <GoogleLogin setUserCallback={handleSetUser} />
          </Route>          
         )}
           
