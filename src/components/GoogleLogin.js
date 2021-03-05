@@ -13,7 +13,7 @@ export default function GoogleLogin({ setUserCallback }) {
                 }
                 setUserCallback(newUser);
             })
-            .catch(err => prompt(err))
+            .catch(err => alert(err))
     }
 
     return (
