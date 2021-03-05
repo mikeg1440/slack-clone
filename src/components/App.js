@@ -1,11 +1,14 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Login from './Login';
 import GoogleLogin from './GoogleLogin';
 import './App.css';
 import styled, { ThemeProvider } from 'styled-components';
 import { useState, useEffect } from 'react';
 import db from '../firebase';
-import ChatPage from '../containers/ChatPage'
+
+import Header from '../components/Header';
+import Chatroom from './Chatroom'
+import Sidebar from './Sidebar'
+
 
 
 const lightTheme = {
@@ -29,9 +32,9 @@ const darkTheme = {
 
 function App() {
 
-  const [currentTheme, setCurrentTheme] = useState('light');
+  const [ currentTheme, setCurrentTheme ] = useState('light');
   const [ rooms, setRooms ] = useState([]);
-  const [ user, setUser ] = useState(JSON.stringify(localStorage.getItem('user')));
+  const [ user, setUser ] = useState(localStorage.getItem('user') && JSON.stringify(localStorage.getItem('user')));
 
   useEffect(() => {
     db.collection('rooms')
@@ -42,6 +45,7 @@ function App() {
         }))
       })
       localStorage.setItem('rooms', rooms);
+      console.info(`App useEffect Ran - ROOMS: \n${JSON.stringify(rooms)}`);
   }, [])
 
   const switchTheme = () => {
@@ -51,7 +55,7 @@ function App() {
 
   const handleSetUser = (newUser) => {
     setUser(newUser);
-    localStorage.setItem('user', newUser);
+    localStorage.setItem('user', JSON.stringify(newUser));
   }
 
   const handleSignOut = () => {
@@ -59,23 +63,32 @@ function App() {
     setUser(null);
     setRooms([]);
   }
-
+  console.log(user);
   return (
     <AppContainer>
       <Router> 
        <Switch>
 
-        {!!user ? (
-
-          <Route path='/room/:channelId'>
-            <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme} >
-              <ChatPage rooms={rooms} signOutCallback={handleSignOut} themeCallback={switchTheme} />
-            </ThemeProvider>
-          </Route>
-        ) : (
+        {!user ? (
           <Route path='/'>
             <GoogleLogin setUserCallback={handleSetUser} />
          </Route>          
+        ) : (
+          <ThemeProvider theme={currentTheme === 'light' ? lightTheme : darkTheme} >
+
+            <Header user={user} themeCallback={switchTheme} signOutCallback={handleSignOut} />
+
+            <StyledChat>
+              <Sidebar rooms={rooms} />
+              <Route path='/room/:channelId'>                
+                <Chatroom />
+              </Route>
+              <Route path='/'>
+                Create or Select Channel
+                <br/>
+              </Route>
+            </StyledChat>
+          </ThemeProvider>
         )}
           
        </Switch>
@@ -92,3 +105,15 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
 `
+
+const StyledChat = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: ${props => props.theme.chatBG};
+    color: ${props => props.theme.chatFG};
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr;
+    gap: 0px 0px;
+    grid-template-areas: ". .";
+`
+
