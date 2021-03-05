@@ -7,7 +7,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import StyleIcon from '@material-ui/icons/Style';
 
-export default function Header({ username, themeCallback, signOutCallback }) {
+export default function Header({ user, themeCallback, signOutCallback }) {
 
     return (
         <StyledHeader>
@@ -28,8 +28,8 @@ export default function Header({ username, themeCallback, signOutCallback }) {
             </StyledSearchbar>
 
             <StyledUserContainer onClick={signOutCallback}>
-                <b>{username}</b>
-                <StyledImg src={`https://identicon.rmhdev.net/${username}.png`} alt="User Avatar" />
+                <b>{user.name}</b>
+                <StyledImg src={`https://identicon.rmhdev.net/${user.name}.png`} alt="User Avatar" />
             </StyledUserContainer>
         </StyledHeader>
     )
@@ -75,6 +75,7 @@ const StyledInput = styled.input`
 `
 
 const StyledImg = styled.img`
+    margin-left: .5rem;
     width: 20px;
     border: 2px solid black;
 `
