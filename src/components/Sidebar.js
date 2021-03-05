@@ -106,7 +106,7 @@ const PagesContainer = styled.div`
 
 const StyledPages = styled.div`
     display: grid;
-    grid-template-columns: 20% auto;
+    grid-template-columns: min-content auto;
     padding: 1rem 0;
 `
 

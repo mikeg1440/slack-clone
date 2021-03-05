@@ -23,7 +23,6 @@ export default function Chat({ rooms }) {
 const StyledChat = styled.div`
     width: 100%;
     height: 100%;
-    background-color: white;
     display: grid;
     grid-template-columns: 0.4fr 1.6fr;
     gap: 0px 0px;
