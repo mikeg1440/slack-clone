@@ -82,7 +82,7 @@ export default function Chatroom({ user }) {
                 { messages.length > 0 && messages.map( message => <ChatMessage message={ message } /> ) }
             </ChatRoom>
 
-            <NewMessage/>
+            <NewMessage sendMessage={sendMessage} />
             
         </ChatContainer>
     )
