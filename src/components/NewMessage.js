@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import FormatBoldIcon from '@material-ui/icons/FormatBold';
@@ -13,20 +13,18 @@ import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import SendIcon from '@material-ui/icons/Send';
 
-export default function NewMessage() {
+export default function NewMessage({ sendMessage }) {
 
-    const handleMessageSend = () => {
-        alert('Sending message');
-    }
+    const [ messageText, setMessageText ] = useState('');
 
     return (
         <NewMessageContainer>
             <InnerMessageContainer>
 
                 <InputContainer>
-                    <MessageInput placeholder='Message #chat-room-name' type="text" />
+                    <MessageInput placeholder='Message #chat-room-name' type="text" value={messageText} onChange={ e => setMessageText(e.target.value) } />
 
-                    <SendButton onClick={handleMessageSend}>
+                    <SendButton onClick={() => sendMessage(messageText) }>
                         <SendIcon/>
                     </SendButton>               
                 </InputContainer>
