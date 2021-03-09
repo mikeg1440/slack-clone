@@ -12,6 +12,9 @@ import { useState } from 'react';
 export default function Chatroom() {
     let { roomId } = useParams()
     const [ chatroom, setChatroom ] = useState();
+    const [ messages, setMessages ] = useState([]);
+
+
     const getChatroom = () => {
         db.collection('rooms')
             .doc(roomId)
@@ -19,6 +22,19 @@ export default function Chatroom() {
                 setChatroom(snapshot.data())
             })
     }
+
+    const getMessages = () => {
+        db.collection('rooms')
+            .doc(roomId)
+            .collection('messages')
+            .orderBy('timestamp', 'asc')
+            .onSnapshot( snapshot => {
+                let chatMessages = snapshot.docs.map(doc => doc.data());
+                console.info('messages', chatMessages);
+                debugger
+                setMessages([...chatMessages]);
+            })
+    }    
 
     return (
         <ChatContainer>
