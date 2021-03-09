@@ -20,6 +20,7 @@ export default function NewMessage({ sendMessage }) {
     const handleSend = (e) => {
         e.preventDefault();
         sendMessage(messageText);
+        setMessageText('');
     }
 
     return (
@@ -58,7 +59,7 @@ export default function NewMessage({ sendMessage }) {
 const NewMessageContainer = styled.div`
     display: flex;
     justify-content: center;
-    padding: 1rem;
+    margin: 1rem;
 `
 
 const InnerMessageContainer = styled.div`
