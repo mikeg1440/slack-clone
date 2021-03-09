@@ -9,7 +9,7 @@ export default function GoogleLogin({ setUserCallback }) {
             .then(result => {
                 const newUser = {
                     name: result.user.displayName,
-                    photo: result.user.photoUrl
+                    photo: result.user.photoUrl         // TODO Check if no image for user and assign one 
                 }
                 setUserCallback(newUser);
             })

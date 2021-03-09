@@ -6,12 +6,13 @@ import InfoIcon from '@material-ui/icons/Info';
 import NewMessage from './NewMessage';
 import ChatMessage from './ChatMessage';
 import db from '../firebase';
+import firebase from '../firebase';
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function Chatroom() {
+export default function Chatroom({ user }) {
 
     let { roomId } = useParams()
     const [ chatroom, setChatroom ] = useState();
@@ -34,10 +35,25 @@ export default function Chatroom() {
             .onSnapshot( snapshot => {
                 let chatMessages = snapshot.docs.map(doc => doc.data());
                 console.info('messages', chatMessages);
-                debugger
                 setMessages([...chatMessages]);
             })
-    }    
+    }
+
+    const sendMessage = (message) => {
+        if ( !!roomId && message.length > 0 ){
+            const payload = {
+                user: user.name,
+                text: message,
+                userImage: user.photo,
+                timestamp: firebase.firestore.Timestamp.now()
+            }
+
+            db.collection('rooms')
+                .doc(roomId)
+                .collection('messages')
+                .add(payload);
+        }
+    }
 
     useEffect(() => {
         getChatroom();
