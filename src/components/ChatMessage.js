@@ -1,32 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function ChatMessage({user, message}) {
+export default function ChatMessage({ message }) {
     return (
         <MesageContainer>
             <AvatarContainer>
-                <UserAvatar src="https://randomuser.me/api/portraits/women/27.jpg" alt="User avatar"/> 
+                <UserAvatar src={  message.userImage } alt="User image"/> 
             </AvatarContainer>
 
 
             <MessageBody>
                 <MessageHeader>
-                    Cindy Chan
+                    { message.user }
                     <TimeStamp>
-                        11:52 PM
+                        { message.timestamp.toDate().toLocaleTimeString() }
                     </TimeStamp>
                 </MessageHeader>
 
                 <Message>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    { message.text }
                 </Message>
 
-                {!!message && !!message.attachments ? message.attachments.map(attachment => <Attachments>{attachment.name}</Attachments>) : null}
+                { !!message && !!message.attachments ? message.attachments.map(attachment => <Attachments>{ attachment.name }</Attachments>) : null }
 
                 <Responses>
                     
-                    <img src="https://www.flaticon.com/svg/vstatic/svg/599/599324.svg?token=exp=1614712812~hmac=5afd2992fe66f672ce25bb84d6b6b0c4" width='20px' alt=""/>
+                    <img src="https://www.flaticon.com/premium-icon/icons/svg/599324.svg" width='20px' alt=""/>
                     <img src="https://www.flaticon.com/premium-icon/icons/svg/1478/1478192.svg" width='20px' alt=""/>
+                    {/* TODO Implement the reaction icons and replace the dummy templates */}
                 </Responses>
             </MessageBody>
 
@@ -81,7 +82,7 @@ const Responses = styled.div`
     align-items: center;
     img {
         border-radius: 50%;
-        background-color: lightgrey;
+        background-color: #e4e4e4cc;
         padding: .25rem;
         margin-right: 5px;
     }
