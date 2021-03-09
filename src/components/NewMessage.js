@@ -17,6 +17,11 @@ export default function NewMessage({ sendMessage }) {
 
     const [ messageText, setMessageText ] = useState('');
 
+    const handleSend = (e) => {
+        e.preventDefault();
+        sendMessage(messageText);
+    }
+
     return (
         <NewMessageContainer>
             <InnerMessageContainer>
@@ -24,7 +29,7 @@ export default function NewMessage({ sendMessage }) {
                 <InputContainer>
                     <MessageInput placeholder='Message #chat-room-name' type="text" value={messageText} onChange={ e => setMessageText(e.target.value) } />
 
-                    <SendButton onClick={() => sendMessage(messageText) }>
+                    <SendButton type='submit' onClick={ handleSend }>
                         <SendIcon/>
                     </SendButton>               
                 </InputContainer>
@@ -92,14 +97,16 @@ const MessageInput = styled.input`
     }
 `
 
-const SendButton = styled.div`
+const SendButton = styled.button`
     color: #13d47c;
     background-color: darkgreen;
-    border-radius: 4px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     padding: .5rem;
+    border: 0;
     :hover {
         cursor: pointer;
+        color: white;
     }
 `
