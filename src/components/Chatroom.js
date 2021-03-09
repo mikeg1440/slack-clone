@@ -49,10 +49,11 @@ export default function Chatroom() {
 
             <ChatHeader>
                 <HeaderContainer>
-                    <HeaderTitle># Chat Room</HeaderTitle>
+                    <HeaderTitle># { !!chatroom && chatroom.name }</HeaderTitle>
                     <ChatDetails>
                         <PersonOutlineIcon/>
                         21
+                        {/* TODO Change out template data for dynamic chatroom details */}
                         <PersonPinCircleIcon/>
                         Track and coordinate social media
                     </ChatDetails>
@@ -62,8 +63,7 @@ export default function Chatroom() {
 
 
             <ChatRoom>
-                <ChatMessage />
-                <ChatMessage />
+                { messages.length > 0 && messages.map( message => <ChatMessage message={ message } /> ) }
             </ChatRoom>
 
             <NewMessage/>
