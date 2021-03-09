@@ -7,7 +7,10 @@ import NewMessage from './NewMessage';
 import ChatMessage from './ChatMessage';
 import db from '../firebase';
 
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 export default function Chatroom() {
+    let { roomId } = useParams()
     const [ chatroom, setChatroom ] = useState();
     const getChatroom = () => {
         db.collection('rooms')
