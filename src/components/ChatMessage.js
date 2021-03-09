@@ -50,7 +50,7 @@ const AvatarContainer = styled.div`
 
 const UserAvatar = styled.img`
     border-radius: 5px;
-    size: 20px;
+    width: 96px;    /* TODO fix the image size here so it works better dynamically across all screens */
 `
 
 const MessageBody = styled.div`
