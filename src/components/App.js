@@ -9,8 +9,6 @@ import Header from '../components/Header';
 import Chatroom from './Chatroom'
 import Sidebar from './Sidebar'
 
-
-
 const lightTheme = {
   headerFG: 'white',
   headerBG: '#2a0b2a',
@@ -35,6 +33,7 @@ function App() {
   const [ currentTheme, setCurrentTheme ] = useState('light');
   const [ rooms, setRooms ] = useState([]);
   const [ user, setUser ] = useState(localStorage.getItem('user') && JSON.stringify(localStorage.getItem('user')));
+
 
   useEffect(() => {
     db.collection('rooms')
@@ -80,12 +79,11 @@ function App() {
 
             <StyledChat>
               <Sidebar rooms={rooms} />
-              <Route path='/room/:channelId'>                
+              <Route path='/room/:roomId'>                
                 <Chatroom />
               </Route>
-              <Route path='/'>
+              <Route exact path='/'>
                 Create or Select Channel
-                <br/>
               </Route>
             </StyledChat>
           </ThemeProvider>
