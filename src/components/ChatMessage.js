@@ -13,7 +13,7 @@ export default function ChatMessage({ message }) {
                 <MessageHeader>
                     { message.user }
                     <TimeStamp>
-                        { message.timestamp.toDate().toLocaleTimeString() }
+                        { message.timestamp.toDate().toUTCString() }
                     </TimeStamp>
                 </MessageHeader>
 
@@ -89,7 +89,7 @@ const Responses = styled.div`
 `
 
 const TimeStamp = styled.div`
-    font-size: small;
+    font-size: smaller;
     font-weight: lighter;
-    margin-left: 5px;
+    margin-left: 15px;
 `
