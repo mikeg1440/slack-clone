@@ -80,7 +80,7 @@ function App() {
             <StyledChat>
               <Sidebar rooms={rooms} />
               <Route path='/room/:roomId'>                
-                <Chatroom />
+                <Chatroom user={user} />
               </Route>
               <Route exact path='/'>
                 Create or Select Channel
