@@ -52,9 +52,17 @@ function App() {
     setCurrentTheme(newTheme);
   }
 
+
   const handleSetUser = (newUser) => {
+    
+    if ( !newUser.photo ){
+      newUser.photo = `https://identicon.rmhdev.net/${newUser.name}.png`
+    }
+    
     setUser(newUser);
+
     localStorage.setItem('user', JSON.stringify(newUser));
+    console.table(newUser);
   }
 
   const handleSignOut = () => {
