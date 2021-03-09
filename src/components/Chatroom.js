@@ -5,8 +5,18 @@ import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
 import InfoIcon from '@material-ui/icons/Info';
 import NewMessage from './NewMessage';
 import ChatMessage from './ChatMessage';
+import db from '../firebase';
 
 export default function Chatroom() {
+    const [ chatroom, setChatroom ] = useState();
+    const getChatroom = () => {
+        db.collection('rooms')
+            .doc(roomId)
+            .onSnapshot( snapshot => {
+                setChatroom(snapshot.data())
+            })
+    }
+
     return (
         <ChatContainer>
 
