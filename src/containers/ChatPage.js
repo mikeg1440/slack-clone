@@ -10,3 +10,5 @@ export default function ChatPage({ themeCallback, rooms, signOutCallback}) {
         </>
     )
 }
+
+// TODO Check for files that not being used after the refactor
