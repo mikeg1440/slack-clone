@@ -9,7 +9,10 @@ import db from '../firebase';
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { useEffect } from 'react';
+
 export default function Chatroom() {
+
     let { roomId } = useParams()
     const [ chatroom, setChatroom ] = useState();
     const [ messages, setMessages ] = useState([]);
@@ -35,6 +38,11 @@ export default function Chatroom() {
                 setMessages([...chatMessages]);
             })
     }    
+
+    useEffect(() => {
+        getChatroom();
+        getMessages();
+    }, [roomId])
 
     return (
         <ChatContainer>
