@@ -32,11 +32,17 @@ function App() {
 
   const [ currentTheme, setCurrentTheme ] = useState('light');
   const [ rooms, setRooms ] = useState([]);
-  const [ user, setUser ] = useState(localStorage.getItem('user') && JSON.stringify(localStorage.getItem('user')));
+  const [ user, setUser ] = useState(localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')));
 
 
   useEffect(() => {
-    db.collection('rooms')
+
+    const storedUser = localStorage.getItem('user');
+
+    if (!user && !!storedUser){
+      setUser(localStorage.getItem('user'))
+    }else {
+      db.collection('rooms')
       .get()
       .then(snapshot => {
         setRooms(snapshot.docs.map(doc => {
@@ -45,6 +51,8 @@ function App() {
       })
       localStorage.setItem('rooms', rooms);
       console.info(`App useEffect Ran - ROOMS: \n${JSON.stringify(rooms)}`);
+    }
+
   }, [])
 
   const switchTheme = () => {
@@ -106,20 +114,16 @@ function App() {
 export default App;
 
 const AppContainer = styled.div`
-  width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  position: fixed; 
+  width: 100%;
 `
 
 const StyledChat = styled.div`
-    width: 100%;
-    height: 100%;
     background-color: ${props => props.theme.chatBG};
     color: ${props => props.theme.chatFG};
     display: grid;
     grid-template-columns: 0.4fr 1.6fr;
-    gap: 0px 0px;
-    grid-template-areas: ". .";
 `
 
