@@ -6,7 +6,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import NewMessage from './NewMessage';
 import ChatMessage from './ChatMessage';
 import db from '../firebase';
-import firebase from '../firebase';
+import firebase from 'firebase';
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -47,6 +47,8 @@ export default function Chatroom({ user }) {
                 userImage: user.photo,
                 timestamp: firebase.firestore.Timestamp.now()
             }
+
+            console.table(payload);
 
             db.collection('rooms')
                 .doc(roomId)
