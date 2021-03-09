@@ -63,7 +63,7 @@ export default function Sidebar({ rooms }) {
 
                 <StyledChannels>
                     {!!rooms && rooms.map(room => (
-                        <StyledChannel onClick={() => goToChannel(room.id)}>
+                        <StyledChannel key={room.id} onClick={() => goToChannel(room.id)}>
                             # {room.name}
                         </StyledChannel>
                     ))}
@@ -106,8 +106,10 @@ const PagesContainer = styled.div`
 
 const StyledPages = styled.div`
     display: grid;
-    grid-template-columns: min-content auto;
+    grid-template-columns: 20% auto;
     padding: 1rem 0;
+    width: 80%;
+    cursor: pointer;
 `
 
 const ChannelContainer = styled.div`
