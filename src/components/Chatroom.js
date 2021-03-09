@@ -95,7 +95,9 @@ const ChatContainer = styled.div`
     background-color: ${props => props.theme.chatBG};
     color: ${props => props.theme.chatFG};
     display: grid;
-    grid-template-rows: 65px auto min-content;
+    grid-template-rows: .1fr .8fr .1fr;
+    min-height: 0;
+    height: 100vh;
 `
 
 const ChatHeader = styled.div`
@@ -124,4 +126,17 @@ const HeaderTitle = styled.p`
 
 const ChatRoom = styled.div`
     border-bottom: 1px solid #523753;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+        background: orange;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: blue;
+        border-radius: 20px;
+        border: 3px solid orange;
+    }
 `
