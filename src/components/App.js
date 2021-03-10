@@ -114,8 +114,6 @@ function App() {
 export default App;
 
 const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   position: fixed; 
   width: 100%;
 `
@@ -125,5 +123,6 @@ const StyledChat = styled.div`
     color: ${props => props.theme.chatFG};
     display: grid;
     grid-template-columns: 0.4fr 1.6fr;
+    height: 100vh;
 `
 
