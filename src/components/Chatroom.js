@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
@@ -17,6 +17,7 @@ export default function Chatroom({ user }) {
     let { roomId } = useParams()
     const [ chatroom, setChatroom ] = useState();
     const [ messages, setMessages ] = useState([]);
+    const chatAnchor = useRef();
 
 
     const getChatroom = () => {
@@ -60,7 +61,12 @@ export default function Chatroom({ user }) {
     useEffect(() => {
         getChatroom();
         getMessages();
-    }, [roomId])
+
+        setTimeout(() => {
+            chatAnchor.current.scrollIntoView();
+            console.info('Scrolled to anchor')
+        }, 500);
+    }, [roomId]);
 
     return (
         <ChatContainer>
@@ -82,10 +88,12 @@ export default function Chatroom({ user }) {
 
             <ChatRoom>
                 { messages.length > 0 && messages.map( message => <ChatMessage message={ message } /> ) }
+                <Anchor ref={chatAnchor} />
             </ChatRoom>
 
             <NewMessage sendMessage={sendMessage} />
             
+
         </ChatContainer>
     )
 }
@@ -97,7 +105,6 @@ const ChatContainer = styled.div`
     display: grid;
     grid-template-rows: .1fr .8fr .1fr;
     min-height: 0;
-    height: 100vh;
 `
 
 const ChatHeader = styled.div`
@@ -132,11 +139,14 @@ const ChatRoom = styled.div`
         width: 12px;
     }
     ::-webkit-scrollbar-track {
-        background: orange;
+        background: ${ props => props.theme.chatBG };
     }
     ::-webkit-scrollbar-thumb {
-        background-color: blue;
+        background-color: ${ props => props.theme.chatFG };
         border-radius: 20px;
-        border: 3px solid orange;
+        border: 3px solid ${ props => props.theme.chatBG };
     }
+`
+
+const Anchor = styled.div`
 `
