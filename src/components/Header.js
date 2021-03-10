@@ -39,8 +39,6 @@ export default function Header({ user, themeCallback, signOutCallback }) {
 const StyledHeader = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    align-content: center;
     background-color: ${props => props.theme.headerBG};
     color: ${props => props.theme.headerFG};
     padding: .5rem .5rem;
