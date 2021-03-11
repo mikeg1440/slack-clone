@@ -2,6 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Todo 
+
+    - Update the add channel and search prompts 
+    - Add functionality to create new message with plus button next to workspace name
+    - Change the theme switch UI to be more obvious 
+    - Stash new prompt components and create a branch for it 
+    - Add functionality to add users to workspaces (Develop login flow)
+    
+
+
 ## Available Scripts
 
 In the project directory, you can run:
